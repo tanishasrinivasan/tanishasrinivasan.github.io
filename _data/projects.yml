@@ -1,0 +1,93 @@
+- id: dexterra
+  title: Dexterra Grip
+  status: SCALING
+  subtitle: ""
+  tags:
+    - Arduino
+    - FSR Sensors
+    - Servo Actuation
+    - Tendon Mechanisms
+    - Assistive Technology
+  intro: |
+    Dexterra Grip started with Brian, our community partner, who has a C6 spinal cord injury and limited hand mobility. Two of the things he talked about most were maneuvering his wheelchair when the handrim became slippery and not being able to press guitar strings anymore. That made the design problem much more specific. We wanted something that could reinforce the grip he still had, stay comfortable enough to wear, and help with very different tasks without forcing his hand through a preset motion.
+  sections:
+    - heading: Designing around intent
+      body: |
+        The core idea was proportional assistance. Force-sensitive resistors at the fingertips detect how much pressure the user is already applying. That signal goes to an Arduino, which commands a wrist-mounted servo. The servo pulls fishing-line tendons routed along the fingers, mimicking the way biological tendons create flexion at the joints. The more force the user applies, the more assistance the glove adds. That mattered because Brian needed something that responded to his own effort. We also kept the glove lightweight and breathable so the electronics did not turn the wearable into something technically functional but uncomfortable to use.
+      photo_label: System architecture
+
+    - heading: Three iterations, one mechanical problem
+      body: |
+        Most of our design work came from figuring out how to create a consistent pulling force across the hand. We first tried push-pull solenoids, but they actually pushed Brian's fingers away from the object instead of helping him grip it. We moved to a five-star servo at the wrist, but it produced an inconsistent grip. A circular servo solved the tension problem, but then the wrist section flexed under the servo load. We temporarily reinforced it with cardboard so we could keep testing before designing a custom 3D-printed wrist mount. We also refined the tendon routing and moved more of the fishing line inside the glove to reduce friction, clean up the form factor, and make the force transfer more reliable.
+      photo_label: Prototype progression
+
+    - heading: From prototype to something people noticed
+      body: |
+        The final prototype came in at about $216 per unit and gave us a platform we could test across tasks like gripping bottles, holding a hair dryer, maneuvering a wheelchair handrim, and pressing guitar strings. From there, Dexterra went much further than we expected. We received Project Invent's Moonshot Award, won the live round of the National Innovator Challenge, became U.S. finalists in InventFuture.Global, and received additional recognition there for our process and presentation slides. We also received the Bold Inventor Prize Package, had a one-on-one session with patent attorney Steve Mendelsohn, and were invited onto the Innovation World Podcast.
+      photo_label: Awards / testing
+
+    - heading: Where it is now
+      body: |
+        Dexterra is not really a “finished school project” anymore. We are still thinking about durability, comfort, repeatability, and how the glove could be made easier to reproduce for more users. We are now in conversations with Stanford Biodesign about what scaling and the next stage of the project could look like. What excites me most is that a project can start with one really specific problem, but the solution doesn’t have to stop there. If you design it well, it can grow into something that helps a much larger group of people facing similar challenges.
+      photo_label: Scaling / Stanford
+
+- id: tremor
+  title: TremorEase
+  status: PROTOTYPE
+  subtitle: A modular wearable platform for testing, measuring, and comparing approaches to tremor management.
+  tags:
+    - MPU-6050
+    - Arduino Nano
+    - Bluetooth
+    - Passive Damping
+    - Wearables
+  intro: |
+    TremorEase came out of the Pie-Fi incubator as a low-cost wearable for people with Parkinson's or essential tremor. We originally explored active stabilization, but as the project developed we became more interested in a different question: instead of committing to one damping mechanism, could we build a wearable that lets users compare several approaches and actually see which one works best for them?
+  sections:
+    - heading: Making the glove modular
+      body: |
+        The wearable was built around a fingerless glove or wrist brace with Velcro-based insert zones. Different damping materials, including silicone gel, foam, and small weights, could be swapped in and out instead of being permanently built into the device. That gave us a way to compare soft damping, added inertia, and different placements without rebuilding the glove every time. My side of the project focused on the hardware: prototyping the glove, designing the modular insert layout, integrating the sensor package, and programming the Arduino for motion tracking.
+      photo_label: Modular insert system
+
+    - heading: Measuring instead of guessing
+      body: |
+        We paired the physical damping system with an MPU-6050 IMU, an Arduino Nano, and an HC-05 Bluetooth module. The sensor captures acceleration and gyroscope data from the hand, and the Arduino can turn that stream into a tremor-intensity measure using approaches such as RMS, peak detection, or basic frequency analysis. The companion app was designed to display the tremor data live, log which insert was being used, and save sessions so different configurations could be compared over time. The longer-term idea was that frequency detection or an ML layer could eventually help identify patterns instead of relying only on what felt better in the moment.
+      photo_label: Sensor + app flow
+
+    - heading: Building it as a test platform
+      body: |
+        The project plan was structured around repeated build-test-refine cycles: build a first modular glove, mount and validate the IMU, compare raw tremor data across different inserts, refine comfort and cable management, then use the results to guide a second version. We were not trying to pretend there was one universal insert that would work for everyone. The useful part of the platform was personalization, where we let someone test a gel pad, added weight, foam, or another configuration and have both their own feedback and motion data to compare.
+      photo_label: Testing / iteration
+
+    - heading: Outcome
+      body: |
+        We developed TremorEase through Pie-Fi and brought the glove, sensor data, app workflow, and demo materials to the incubator’s Demo Day at the Santa Cruz Museum of Art & History. It never became a finished medical product, but I’m still glad we pushed it as far as we did. The project made me more comfortable with changing direction, testing ideas that might not work, and treating prototypes as a way to learn rather than prove that the first idea was right.
+      photo_label: Demo Day
+
+- id: api-security
+  title: API Security Project
+  status: ACTIVE
+  current: true
+  subtitle: A Python proxy layer for request validation and replay-attack prevention.
+  tags:
+    - Python
+    - API Security
+    - Request Validation
+    - Replay Protection
+  intro: |
+    I joined this project through the Google Developer Group at UC Santa Cruz because I wanted to work on software where the interesting question was not just whether a request was valid, but whether the system should trust it.
+  sections:
+    - heading: The problem
+      body: |
+        A request can be legitimate the first time it is sent and still become a security issue if it can simply be captured and reused. That makes replay protection different from checking whether the request has the right credentials.
+      photo_label: Request flow
+
+    - heading: What we're building
+      body: |
+        We are building a Python-based proxy layer that sits between the client and the service it is trying to reach. The proxy handles request validation and replay-protection logic before traffic reaches the protected API, so the security checks live in the request path instead of being scattered across individual applications.
+      photo_label: Proxy architecture
+
+    - heading: Why I like the project
+      body: |
+        Security forces me to think differently from normal feature development. Instead of asking only what should happen with correct input, I have to think about repeated requests, malformed behavior, unauthorized reuse, and the assumptions an attacker might exploit. The project is still active, which is exactly why I want it under Currently Building rather than presenting it as a finished result.
+      photo_label: Current development

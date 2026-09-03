@@ -1,0 +1,59 @@
+- id: childhood
+  title: Childhood memory
+  caption: Family throwback.
+  file: childhood-memory.jpg
+
+- id: kitchen
+  title: Kitchen selfie
+  caption: Random snapshot with a friend.
+  file: kitchen-selfie.jpg
+
+- id: white-dress
+  title: White dress day
+  caption: Sunny day photo with a friend.
+  file: white-dress-day.jpg
+
+- id: formal
+  title: Formal with friends
+  caption: Dressed up and slightly chaotic.
+  file: formal-friends.jpg
+
+- id: cowgirl
+  title: Cowgirl hat moment
+  caption: One of my favorite random pictures.
+  file: cowgirl-hat.jpg
+
+- id: flowers
+  title: Flowers and formal
+  caption: Another dressed-up moment with flowers.
+  file: flowers-and-formal.jpg
+
+- id: frogs
+  title: Frog headbands
+  caption: Very unserious energy.
+  file: frog-headbands.jpg
+
+- id: ucsc
+  title: UCSC dorm night
+  caption: A memory from my UCSC time.
+  file: ucsc-dorm-night.jpg
+
+- id: stadium
+  title: Stadium day
+  caption: Match day photo.
+  file: stadium-day.jpg
+
+- id: city-night
+  title: City night
+  caption: Night out view.
+  file: city-night.jpg
+
+- id: wigs
+  title: Pink wigs group
+  caption: A chaotic themed group photo.
+  file: pink-wigs-group.png
+
+- id: sleepy-dorm
+  title: Sleepy dorm moment
+  caption: Peak candid energy.
+  file: sleepy-dorm-moment.jpg

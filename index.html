@@ -1,0 +1,118 @@
+---
+layout: default
+title: Tanisha Srinivasan
+---
+
+<div id="boot-screen" class="boot-screen">
+  <div class="boot-inner">
+    <div class="boot-logo">TS</div>
+    <h1>TanishaOS</h1>
+    <p>Version 1.9.9</p>
+    <div id="boot-line" class="boot-line">Starting TanishaOS…</div>
+    <button id="skip-boot" class="text-button">Skip</button>
+  </div>
+</div>
+
+
+
+<div id="login-screen" class="login-screen" hidden>
+  <div class="login-topbar">
+    <span>Tanisha Srinivasan</span>
+    <span id="login-date"></span>
+  </div>
+
+  <div class="login-card">
+    <div class="login-avatar">TS</div>
+    <h1>Tanisha Srinivasan</h1>
+    <p>Welcome to my computer.</p>
+
+    <form id="login-form" autocomplete="off">
+      <div class="login-input-wrap">
+        <input id="login-password" type="password" placeholder="Enter Password" aria-label="Password">
+        <button type="submit" aria-label="Log in">→</button>
+      </div>
+      <div id="login-error" class="login-error"></div>
+      <div class="login-hint">Password: <strong>fight on</strong></div>
+    </form>
+  </div>
+
+  <div class="login-footer">↻ restart &nbsp;&nbsp; ⏻ shut down</div>
+</div>
+
+<main id="desktop" class="desktop">
+  <div class="desktop-brand">
+    <span>Tanisha Srinivasan</span>
+    <small>personal operating system</small>
+  </div>
+
+  <section class="desktop-icons">
+    {% for item in site.data.filesystem.desktop %}
+      <button class="desktop-icon" data-open="{{ item.app }}">
+        <span class="icon-glyph">
+          {% if item.app == 'about' %}DIR
+          {% elsif item.app == 'projects' %}DIR
+          {% elsif item.app == 'photos' %}IMG
+          {% elsif item.app == 'terminal' %}>_
+          {% else %}DEL{% endif %}
+        </span>
+        <span>{{ item.name }}</span>
+      </button>
+    {% endfor %}
+  </section>
+
+  <section id="window-layer" class="window-layer"></section>
+
+  <div id="start-menu" class="start-menu" hidden>
+    <div class="start-profile">
+      <div class="avatar">TS</div>
+      <div>
+        <strong>Tanisha Srinivasan</strong>
+        <span>engineer / builder / side quests</span>
+      </div>
+    </div>
+
+    <div class="start-grid">
+      <button data-open="about">About Me</button>
+      <button data-open="projects">Projects</button>
+      <button data-open="resume">Resume</button>
+      <button data-open="photos">Photos</button>
+      <button data-open="terminal">Terminal</button>
+      <button data-open="tetris">Tetris.exe</button>
+      <button data-open="recycle">Recycle Bin</button>
+    </div>
+
+    <button id="shutdown-button" class="shutdown-button">⏻ Shut Down</button>
+  </div>
+
+  <footer class="taskbar">
+    <button id="start-button" class="start-button" aria-label="Open Start menu">
+      <span class="start-mark"><i></i><i></i><i></i><i></i></span>
+    </button>
+
+    <div class="pinned-apps" aria-label="Pinned apps">
+      <button class="pinned-app" data-open="about" title="About Me"><span class="pin-icon folder-pin"></span></button>
+      <button class="pinned-app" data-open="projects" title="Projects"><span class="pin-icon project-pin"></span></button>
+      <button class="pinned-app" data-open="terminal" title="Terminal"><span class="pin-icon terminal-pin">&gt;_</span></button>
+      <button class="pinned-app" data-open="photos" title="Photos"><span class="pin-icon photos-pin"></span></button>
+    </div>
+
+    <div id="taskbar-apps" class="taskbar-apps"></div>
+
+    <div class="system-tray">
+      <span class="tray-chevron">⌃</span>
+      <span title="Wi-Fi">⌁</span>
+      <span title="Sound">◕</span>
+      <button id="clock" class="clock"></button>
+    </div>
+  </footer>
+
+  <div id="toast-area" class="toast-area"></div>
+</main>
+
+<script>
+window.TANISHA_BASE_URL = "{{ site.baseurl }}";
+window.TANISHA_RESUME_URL = "{{ '/assets/resume/Tanisha_Srinivasan_Resume.pdf' | relative_url }}";
+window.TANISHA_HEADSHOT_URL = "{{ '/assets/photos/tanisha-headshot.jpg' | relative_url }}";
+</script>
+<script id="projects-data" type="application/json">{{ site.data.projects | jsonify }}</script>
+<script id="photos-data" type="application/json">{{ site.data.photos | jsonify }}</script>

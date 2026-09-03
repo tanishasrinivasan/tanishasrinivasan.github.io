@@ -1,0 +1,13 @@
+desktop:
+  - name: About Me
+    app: about
+  - name: Projects
+    app: projects
+  - name: Photos
+    app: photos
+  - name: Terminal
+    app: terminal
+  - name: Tetris.exe
+    app: tetris
+  - name: Recycle Bin
+    app: recycle
