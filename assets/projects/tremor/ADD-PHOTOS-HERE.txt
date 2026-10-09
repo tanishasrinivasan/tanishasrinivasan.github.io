@@ -1,7 +1,0 @@
-Recommended Tremor images:
-1. concept sketches / research
-2. active IMU + servo prototype
-3. design-pivot / whiteboard
-4. passive damping mechanism
-5. Pie-Fi Demo Day or latest prototype
-6. testing / final iteration

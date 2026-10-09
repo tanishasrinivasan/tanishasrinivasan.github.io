@@ -1,118 +1,215 @@
----
-layout: default
-title: Tanisha Srinivasan
----
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Tanisha Srinivasan builds small wearables that help people, from the circuit board to the firmware. Physics & CS at USC.">
+<meta property="og:title" content="Tanisha Srinivasan">
+<meta property="og:description" content="Hardware and embedded projects: Cue, Dexterra Grip, and more.">
+<meta property="og:image" content="img/me.webp">
+<title>Tanisha Srinivasan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&display=swap">
+<style>
+/* Layout: one quiet white column; a plain ID card hangs beside the name; projects are single lines that open on click. Light-only by choice. */
+:root{
+  --bg:#ffffff; --fg:#111111; --muted:#8c8c8c; --soft:#555555; --line:#eeeeee; --card:#fbfbfb;
+  --sans:"Geist", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono:"Geist Mono", ui-monospace, Menlo, monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.6 var(--sans);padding-inline:24px;padding-block:0;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto;padding-block:80px 96px;display:flex;flex-direction:column;gap:104px}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:1.5px solid var(--fg);outline-offset:3px;border-radius:4px}
+h2{font:400 15px/1.4 var(--sans);margin:0;color:var(--muted)}
+section{display:flex;flex-direction:column;gap:20px}
+p{margin:0}
 
-<div id="boot-screen" class="boot-screen">
-  <div class="boot-inner">
-    <div class="boot-logo">TS</div>
-    <h1>TanishaOS</h1>
-    <p>Version 1.9.9</p>
-    <div id="boot-line" class="boot-line">Starting TanishaOS…</div>
-    <button id="skip-boot" class="text-button">Skip</button>
-  </div>
-</div>
+/* hero */
+.hero{display:flex;justify-content:space-between;align-items:flex-start;gap:40px}
+.intro{display:flex;flex-direction:column;gap:28px;min-width:0}
+.name{font:500 clamp(36px,7vw,52px)/1 var(--sans);letter-spacing:-.04em;margin:0}
+.intro p{max-width:32ch}
+.intro .muted{color:var(--muted)}
 
+/* ID card */
+.badge-wrap{perspective:700px;flex-shrink:0;display:flex;flex-direction:column;align-items:center}
+.strap{width:1px;height:44px;background:var(--line)}
+.badge{width:148px;max-width:100%;background:var(--card);border:1px solid var(--line);border-radius:10px;
+  box-shadow:0 1px 2px rgba(0,0,0,.04),0 12px 28px -12px rgba(0,0,0,.12);
+  padding:12px 10px 12px;display:flex;flex-direction:column;gap:10px;
+  transform-origin:50% -44px;animation:swing 2.4s cubic-bezier(.3,.7,.3,1) both;transition:transform .3s ease-out}
+.slot{width:24px;height:4px;border-radius:2px;background:var(--line);margin:0 auto}
+.badge img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;border-radius:6px;background:var(--line)}
+.badge .txt{display:flex;flex-direction:column;gap:6px;padding-inline:2px}
+.badge .nm{font:500 13px/1.25 var(--sans);letter-spacing:-.01em}
+.badge .meta{font:400 9.5px/1.5 var(--mono);color:var(--muted);letter-spacing:.02em}
+@keyframes swing{0%{transform:rotate(7deg)}35%{transform:rotate(-4deg)}65%{transform:rotate(1.5deg)}100%{transform:rotate(0)}}
+@media (max-width:520px){.hero{flex-direction:column-reverse;gap:8px}.badge-wrap{align-self:flex-end}.badge{width:120px}.strap{height:28px}}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-bottom:20px}
+.shots img{display:block;width:100%;height:100%;object-fit:cover;border-radius:8px;background:var(--card);border:1px solid var(--line)}
+.shots .wide{grid-column:1/-1;height:auto}
+.shots .tall{aspect-ratio:3/4;object-position:50% 30%}
+.body .spec{padding-bottom:16px}
 
+/* work */
+.list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.item{border-bottom:1px solid var(--line)}
+.item button{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto 14px;gap:16px;align-items:baseline;padding-block:16px;cursor:pointer}
+.item h3{font:500 15px/1.4 var(--sans);margin:0}
+.item h3 span{color:var(--muted);font-weight:400}
+.item .date{color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.item .pm{color:var(--muted);transition:transform .3s;text-align:right}
+.item[data-open] .pm{transform:rotate(45deg)}
+.body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.item[data-open] .body{grid-template-rows:1fr}
+.body > div{overflow:hidden;min-height:0}
+.body p{color:var(--soft);max-width:52ch;padding-bottom:6px}
+.body .spec{font:400 12px/1.6 var(--mono);color:var(--muted);padding-bottom:20px}
+.body p:last-child{padding-bottom:20px}
 
-<div id="login-screen" class="login-screen" hidden>
-  <div class="login-topbar">
-    <span>Tanisha Srinivasan</span>
-    <span id="login-date"></span>
-  </div>
+/* about */
+.about p{max-width:54ch}
+.rows{display:flex;flex-direction:column}
+.row{display:grid;grid-template-columns:120px minmax(0,1fr);gap:24px;padding-block:6px}
+.row span:first-child{color:var(--muted);font-variant-numeric:tabular-nums}
+@media (max-width:520px){.row{grid-template-columns:1fr;gap:0;padding-block:8px}}
 
-  <div class="login-card">
-    <div class="login-avatar">TS</div>
-    <h1>Tanisha Srinivasan</h1>
-    <p>Welcome to my computer.</p>
+/* contact */
+.say{max-width:46ch;color:var(--soft)}
+.say a,.say button{font:inherit;color:var(--fg);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-decoration-color:#cfcfcf;text-underline-offset:3px;transition:text-decoration-color .2s}
+.say a:hover,.say button:hover{text-decoration-color:var(--fg)}
+footer{color:var(--muted);font-size:13px}
+@media (prefers-reduced-motion:reduce){.badge{animation:none;transition:none}.body,.item .pm{transition:none}}
+</style>
+</head>
+<body>
 
-    <form id="login-form" autocomplete="off">
-      <div class="login-input-wrap">
-        <input id="login-password" type="password" placeholder="Enter Password" aria-label="Password">
-        <button type="submit" aria-label="Log in">→</button>
+<div class="wrap">
+  <header class="hero">
+    <div class="intro">
+      <h1 class="name">Tanisha<br>Srinivasan</h1>
+      <p>I build small wearables that help people, from the circuit board to the firmware.</p>
+      <p class="muted">Physics &amp; Computer Science at USC.</p>
+    </div>
+    <div class="badge-wrap" aria-hidden="true">
+      <div class="strap"></div>
+      <div class="badge" id="badge">
+        <div class="slot"></div>
+        <img src="img/me.webp" alt="">
+        <div class="txt">
+          <div class="nm">Tanisha<br>Srinivasan</div>
+          <div class="meta">Physics &amp; CS<br>USC · 2029</div>
+        </div>
       </div>
-      <div id="login-error" class="login-error"></div>
-      <div class="login-hint">Password: <strong>fight on</strong></div>
-    </form>
-  </div>
+    </div>
+  </header>
 
-  <div class="login-footer">↻ restart &nbsp;&nbsp; ⏻ shut down</div>
-</div>
-
-<main id="desktop" class="desktop">
-  <div class="desktop-brand">
-    <span>Tanisha Srinivasan</span>
-    <small>personal operating system</small>
-  </div>
-
-  <section class="desktop-icons">
-    {% for item in site.data.filesystem.desktop %}
-      <button class="desktop-icon" data-open="{{ item.app }}">
-        <span class="icon-glyph">
-          {% if item.app == 'about' %}DIR
-          {% elsif item.app == 'projects' %}DIR
-          {% elsif item.app == 'photos' %}IMG
-          {% elsif item.app == 'terminal' %}>_
-          {% else %}DEL{% endif %}
-        </span>
-        <span>{{ item.name }}</span>
-      </button>
-    {% endfor %}
+  <section id="work">
+    <h2>Work</h2>
+    <div class="list">
+      <div class="item">
+        <button type="button" aria-expanded="false"><h3>Cue <span>Hardware Engineer</span></h3><span class="date">2026</span><span class="pm">+</span></button>
+        <div class="body"><div>
+          <p>An ear-worn wearable that gives a silent haptic tap when you use filler words or speak too fast. I designed the 4-layer board in KiCad around an nRF54L15 Bluetooth module, had it fabricated and assembled, and wrote the prototype firmware. Built through Sigma Eta Pi at USC.</p>
+          <div class="spec">42 × 32 mm · 56 parts · ~10 h battery · 90% accuracy · &lt;150 ms latency</div>
+          <div class="shots">
+            <img class="wide" src="img/cue-exploded.webp" alt="Exploded view of Cue: shell, circuit board, battery and haptic motor" loading="lazy">
+            <img class="tall" src="img/cue-device.webp" alt="Cue behind-the-ear device render" loading="lazy">
+            <img class="tall" src="img/cue-app.webp" alt="Cue companion app" loading="lazy">
+          </div>
+        </div></div>
+      </div>
+      <div class="item">
+        <button type="button" aria-expanded="false"><h3>Dexterra Grip <span>Hardware Engineer</span></h3><span class="date">2025</span><span class="pm">+</span></button>
+        <div class="body"><div>
+          <p>A $200 assistive glove for people with grip challenges, about a tenth the cost of commercial options. Force sensors read intent and servo-driven tendons add up to 30 N of grip. U.S. finalist at InventFuture.Global and winner of the Project Invent Moonshot Award.</p>
+          <div class="spec">5 actuation concepts · +40% grip consistency</div>
+          <div class="shots">
+            <img class="wide" src="img/dexterra-final.webp" alt="Final Dexterra Grip glove with servo and tendons" loading="lazy">
+            <img class="wide" src="img/dexterra-process.webp" alt="Three earlier glove designs" loading="lazy">
+          </div>
+        </div></div>
+      </div>
+      <div class="item">
+        <button type="button" aria-expanded="false"><h3>Tremor-Dampening Wearable <span>Embedded Developer</span></h3><span class="date">2025</span><span class="pm">+</span></button>
+        <div class="body"><div>
+          <p>An IMU-driven wearable that detects tremor and actuates damping to steady the hand. Four prototype iterations, demoed at Pie-Fi Demo Day at UC Santa Cruz.</p>
+          <div class="spec">−35% tremor amplitude</div>
+        </div></div>
+      </div>
+      <div class="item">
+        <button type="button" aria-expanded="false"><h3>Moko <span>Hackathon</span></h3><span class="date">2026</span><span class="pm">+</span></button>
+        <div class="body"><div>
+          <p>A platform that connects creators' product designs with suppliers and manufacturing guidance. Built over a weekend hackathon.</p>
+          <div class="shots" style="padding-top:14px">
+            <img class="wide" src="img/moko-home.webp" alt="Moko home page" loading="lazy">
+            <img class="wide" src="img/moko-steps.webp" alt="Moko's three-step flow" loading="lazy">
+          </div>
+        </div></div>
+      </div>
+      <div class="item">
+        <button type="button" aria-expanded="false"><h3>Exoplanet Detection <span>ML Researcher</span></h3><span class="date">2024</span><span class="pm">+</span></button>
+        <div class="body"><div>
+          <p>Convolutional neural networks that classify NASA Kepler light curves to find transiting planets. Inspirit AI Scholars.</p>
+          <div class="spec">100,000+ observations · 87% validation accuracy</div>
+        </div></div>
+      </div>
+      <div class="item">
+        <button type="button" aria-expanded="false"><h3>API Security System <span>Developer</span></h3><span class="date">2025</span><span class="pm">+</span></button>
+        <div class="body"><div>
+          <p>A Python proxy that authenticates API requests and blocks replay attacks. Google Developer Group at UCSC.</p>
+        </div></div>
+      </div>
+    </div>
   </section>
 
-  <section id="window-layer" class="window-layer"></section>
-
-  <div id="start-menu" class="start-menu" hidden>
-    <div class="start-profile">
-      <div class="avatar">TS</div>
-      <div>
-        <strong>Tanisha Srinivasan</strong>
-        <span>engineer / builder / side quests</span>
-      </div>
+  <section class="about">
+    <h2>About</h2>
+    <p>I study physics and computer science at USC, with a minor in computational neuroscience. Outside of building, I'm learning Carnatic music and I've danced ballet for about ten years.</p>
+    <div class="rows">
+      <div class="row"><span>2026 – Now</span><span>Hardware Engineer, Cue</span></div>
+      <div class="row"><span>2025 – 2026</span><span>Hardware Engineer, Dexterra Grip</span></div>
+      <div class="row"><span>2025</span><span>Embedded Developer, Pie-Fi @ UCSC</span></div>
+      <div class="row"><span>2024</span><span>ML Researcher, Inspirit AI</span></div>
     </div>
+  </section>
 
-    <div class="start-grid">
-      <button data-open="about">About Me</button>
-      <button data-open="projects">Projects</button>
-      <button data-open="resume">Resume</button>
-      <button data-open="photos">Photos</button>
-      <button data-open="terminal">Terminal</button>
-      <button data-open="tetris">Tetris.exe</button>
-      <button data-open="recycle">Recycle Bin</button>
-    </div>
+  <section class="contact">
+    <h2>Contact</h2>
+    <p class="say">I'm looking for hardware and embedded roles. I'd love to connect on <a href="https://linkedin.com/in/tanishasrinivasan" target="_blank" rel="noopener">LinkedIn</a> or <a href="https://x.com/tanishasrini" target="_blank" rel="noopener">X (Twitter)</a>, and you can read my <a href="Srinivasan_Tanisha_Resume.pdf" target="_blank" rel="noopener">resume</a>. To reach out directly, email me at <button id="copy" type="button" title="Copy email">tanishas@usc.edu</button>.</p>
+  </section>
 
-    <button id="shutdown-button" class="shutdown-button">⏻ Shut Down</button>
-  </div>
+  <footer>© 2026 Tanisha Srinivasan</footer>
+</div>
 
-  <footer class="taskbar">
-    <button id="start-button" class="start-button" aria-label="Open Start menu">
-      <span class="start-mark"><i></i><i></i><i></i><i></i></span>
-    </button>
-
-    <div class="pinned-apps" aria-label="Pinned apps">
-      <button class="pinned-app" data-open="about" title="About Me"><span class="pin-icon folder-pin"></span></button>
-      <button class="pinned-app" data-open="projects" title="Projects"><span class="pin-icon project-pin"></span></button>
-      <button class="pinned-app" data-open="terminal" title="Terminal"><span class="pin-icon terminal-pin">&gt;_</span></button>
-      <button class="pinned-app" data-open="photos" title="Photos"><span class="pin-icon photos-pin"></span></button>
-    </div>
-
-    <div id="taskbar-apps" class="taskbar-apps"></div>
-
-    <div class="system-tray">
-      <span class="tray-chevron">⌃</span>
-      <span title="Wi-Fi">⌁</span>
-      <span title="Sound">◕</span>
-      <button id="clock" class="clock"></button>
-    </div>
-  </footer>
-
-  <div id="toast-area" class="toast-area"></div>
-</main>
 
 <script>
-window.TANISHA_BASE_URL = "{{ site.baseurl }}";
-window.TANISHA_RESUME_URL = "{{ '/assets/resume/Tanisha_Srinivasan_Resume.pdf' | relative_url }}";
-window.TANISHA_HEADSHOT_URL = "{{ '/assets/photos/tanisha-headshot.jpg' | relative_url }}";
+document.querySelectorAll('.item button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const it=btn.parentElement, open=it.hasAttribute('data-open');
+    it.toggleAttribute('data-open',!open);
+    btn.setAttribute('aria-expanded',String(!open));
+  });
+});
+const badge=document.getElementById('badge'), wrap=document.querySelector('.badge-wrap');
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  badge.addEventListener('animationend',()=>{
+    badge.style.animation='none';
+    wrap.addEventListener('pointermove',e=>{
+      const r=badge.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      badge.style.transform=`rotateY(${x*20}deg) rotateX(${-y*14}deg)`;
+    });
+    wrap.addEventListener('pointerleave',()=>badge.style.transform='');
+  });
+}
+const c=document.getElementById('copy'), email='tanishas@usc.edu';
+c.addEventListener('click',()=>{
+  try{navigator.clipboard.writeText(email).then(()=>{c.textContent='Copied';setTimeout(()=>c.textContent=email,1500)}).catch(()=>{})}catch(e){}
+});
 </script>
-<script id="projects-data" type="application/json">{{ site.data.projects | jsonify }}</script>
-<script id="photos-data" type="application/json">{{ site.data.photos | jsonify }}</script>
+
+</body>
+</html>
