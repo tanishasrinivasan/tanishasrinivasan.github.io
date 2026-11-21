@@ -1,205 +1,213 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Tanisha Srinivasan builds small wearables that help people, from the circuit board to the firmware. Physics & CS at USC.">
-<meta property="og:title" content="Tanisha Srinivasan">
-<meta property="og:description" content="Hardware and embedded projects: Cue, Dexterra Grip, and more.">
-<meta property="og:image" content="img/me.webp">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tanisha Srinivasan</title>
+<meta name="description" content="Tanisha Srinivasan builds small wearables that help people, from the circuit board to the firmware.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
-/* Layout: one quiet white column; a plain ID card hangs beside the name; projects are single lines that open on click. Light-only by choice. */
-:root{
-  --bg:#ffffff; --fg:#111111; --muted:#8c8c8c; --soft:#555555; --line:#eeeeee; --card:#fbfbfb;
-  --sans:"Geist", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --mono:"Geist Mono", ui-monospace, Menlo, monospace;
-  color-scheme:light;
-}
-*{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font:15px/1.6 var(--sans);padding-inline:24px;padding-block:0;-webkit-font-smoothing:antialiased}
-.wrap{max-width:600px;margin:0 auto;padding-block:80px 96px;display:flex;flex-direction:column;gap:104px}
-a{color:inherit;text-decoration:none}
-:focus-visible{outline:1.5px solid var(--fg);outline-offset:3px;border-radius:4px}
-h2{font:400 15px/1.4 var(--sans);margin:0;color:var(--muted)}
-section{display:flex;flex-direction:column;gap:20px}
-p{margin:0}
-
-/* hero */
-.hero{display:flex;justify-content:space-between;align-items:flex-start;gap:40px}
-.intro{display:flex;flex-direction:column;gap:28px;min-width:0}
-.name{font:500 clamp(36px,7vw,52px)/1 var(--sans);letter-spacing:-.04em;margin:0}
-.intro p{max-width:40ch}
-.intro .muted{color:var(--muted)}
-
-/* ID card */
-.badge-wrap{perspective:700px;flex-shrink:0;display:flex;flex-direction:column;align-items:center}
-.strap{width:1px;height:44px;background:var(--line)}
-.badge{width:148px;max-width:100%;background:var(--card);border:1px solid var(--line);border-radius:10px;
-  box-shadow:0 1px 2px rgba(0,0,0,.04),0 12px 28px -12px rgba(0,0,0,.12);
-  padding:12px 10px 12px;display:flex;flex-direction:column;gap:10px;
-  transform-origin:50% -44px;animation:swing 2.4s cubic-bezier(.3,.7,.3,1) both;transition:transform .3s ease-out}
-.slot{width:24px;height:4px;border-radius:2px;background:var(--line);margin:0 auto}
-.badge img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;border-radius:6px;background:var(--line)}
-.badge .txt{display:flex;flex-direction:column;gap:6px;padding-inline:2px}
-.badge .nm{font:500 13px/1.25 var(--sans);letter-spacing:-.01em}
-.badge .meta{font:400 9.5px/1.5 var(--mono);color:var(--muted);letter-spacing:.02em}
-@keyframes swing{0%{transform:rotate(7deg)}35%{transform:rotate(-4deg)}65%{transform:rotate(1.5deg)}100%{transform:rotate(0)}}
-@media (max-width:520px){.hero{flex-direction:column-reverse;gap:8px}.badge-wrap{align-self:flex-end}.badge{width:120px}.strap{height:28px}}
-.shots{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-bottom:20px}
-.shots img{display:block;width:100%;height:100%;object-fit:cover;border-radius:8px;background:var(--card);border:1px solid var(--line)}
-.shots .wide{grid-column:1/-1;height:auto}
-.shots .tall{aspect-ratio:3/4;object-position:50% 30%}
-.body .spec{padding-bottom:16px}
-
-/* work */
-.list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
-.item{border-bottom:1px solid var(--line)}
-.item button{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto 14px;gap:16px;align-items:baseline;padding-block:16px;cursor:pointer}
-.item h3{font:500 15px/1.4 var(--sans);margin:0}
-.item h3 span{color:var(--muted);font-weight:400}
-.item .date{color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
-.item .pm{color:var(--muted);transition:transform .3s;text-align:right}
-.item[data-open] .pm{transform:rotate(45deg)}
-.body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
-.item[data-open] .body{grid-template-rows:1fr}
-.body > div{overflow:hidden;min-height:0}
-.body p{color:var(--soft);max-width:52ch;padding-bottom:6px}
-.body .spec{font:400 12px/1.6 var(--mono);color:var(--muted);padding-bottom:20px}
-.body p:last-child{padding-bottom:20px}
-
-/* about */
-.about p{max-width:54ch}
-.rows{display:flex;flex-direction:column}
-.row{display:grid;grid-template-columns:120px minmax(0,1fr);gap:24px;padding-block:6px}
-.row span:first-child{color:var(--muted);font-variant-numeric:tabular-nums}
-@media (max-width:520px){.row{grid-template-columns:1fr;gap:0;padding-block:8px}}
-
-/* contact */
-.say{max-width:46ch;color:var(--soft)}
-.say a,.say button{font:inherit;color:var(--fg);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-decoration-color:#cfcfcf;text-underline-offset:3px;transition:text-decoration-color .2s}
-.say a:hover,.say button:hover{text-decoration-color:var(--fg)}
-footer{color:var(--muted);font-size:13px}
-@media (prefers-reduced-motion:reduce){.badge{animation:none;transition:none}.body,.item .pm{transition:none}}
+/* VOICE personal, quiet, confident
+   IDEA a printed lab notebook spread: a portrait page, then one page per build with real photos
+   PICTURE Tanisha's own portrait, tall, then real photos of each build
+   COLOUR white paper, near-black ink, one orange taken from her photo
+   TYPE Geist 500 display + Geist text, Geist Mono for specs
+   LAYOUT laptop: portrait left, name and intro right; phone: name, portrait, intro */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#121110);--ink:light-dark(#141312,#f2efea);--soft:light-dark(#6b6762,#a9a39b);--rule:light-dark(#e8e5e0,#2a2826);--tint:light-dark(#f6f4f1,#1b1a18);--acc:light-dark(#d9601f,#f08a4b)}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:24px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit;text-decoration-color:var(--acc);text-underline-offset:4px;text-decoration-thickness:1.5px}
+a:hover{color:var(--acc)}
+a:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:2px}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:max(5vw,16px)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:22px;font-size:15px}
+.top nav{display:flex;flex-wrap:wrap;gap:6px 22px}
+.top a{text-decoration:none;padding:8px 0}
+.mono{font-family:"Geist Mono",ui-monospace,monospace;font-size:13.5px;color:var(--soft)}
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,72px);align-items:end;padding-block:clamp(8px,2vw,24px) clamp(48px,7vw,96px)}
+.portrait{margin:0;position:relative;border-radius:6px;overflow:hidden;aspect-ratio:3/4;background:var(--bg);touch-action:pan-y}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.portrait canvas{position:absolute;inset:0;width:100%;height:100%;cursor:crosshair}
+.portrait.on img{visibility:hidden}
+.hint{position:absolute;left:12px;bottom:10px;margin:0;background:var(--bg);padding:3px 8px;border-radius:4px;font-size:12.5px}
+.portrait:not(.on) .hint{display:none}
+.shots figure,.small figure{margin:0;background:var(--acc);border-radius:6px;overflow:hidden}
+.shots img,.small img{filter:grayscale(1) contrast(1.15);mix-blend-mode:multiply;transition:filter .35s,mix-blend-mode .35s}
+.shots figure:hover img,.small figure:hover img{filter:none;mix-blend-mode:normal}
+.shots figure figcaption{background:var(--bg);margin:0;padding-top:8px}
+h1{font:500 clamp(56px,9.5vw,128px)/.9 Geist,sans-serif;letter-spacing:-.055em;margin:0 0 clamp(22px,3vw,36px)}
+.say{font:500 clamp(22px,2.6vw,30px)/1.25 Geist,sans-serif;letter-spacing:-.02em;margin:0 0 18px;max-width:22em}
+.hero p{max-width:34em;margin:0 0 14px}
+.links{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:22px;font-weight:500}
+h2{font:500 15px/1.4 Geist,sans-serif;color:var(--soft);margin:0;padding-block:18px;border-top:1px solid var(--rule)}
+.proj{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,56px);padding-block:clamp(36px,5vw,64px);border-top:1px solid var(--rule);align-items:start}
+.proj.text{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.proj h3{font:500 clamp(32px,4.4vw,52px)/1 Geist,sans-serif;letter-spacing:-.04em;margin:0 0 10px}
+.role{color:var(--soft);font-size:15px;margin:0 0 18px}
+.proj p{margin:0 0 14px;max-width:34em}
+.specs{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:16px}
+.specs span{white-space:nowrap}
+.shots{display:grid;gap:12px}
+.shots figure{margin:0}
+.shots img{width:100%;max-height:min(70vh,500px);object-fit:cover;border-radius:6px;background:var(--tint)}
+figcaption{font-size:14px;color:var(--soft);margin-top:8px}
+.big{display:grid;grid-template-columns:repeat(auto-fit,minmax(10em,1fr));gap:18px;align-self:center}
+.big div{border-left:2px solid var(--acc);padding-left:14px}
+.big b{display:block;font:500 clamp(34px,4.6vw,56px)/1 Geist,sans-serif;letter-spacing:-.04em}
+.big span{font-size:15px;color:var(--soft)}
+.small{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17em),1fr));gap:0 clamp(24px,4vw,56px);border-top:1px solid var(--rule)}
+.small article{padding-block:28px;border-bottom:1px solid var(--rule)}
+.small h3{font:500 24px/1.15 Geist,sans-serif;letter-spacing:-.02em;margin:0 0 4px}
+.small p{margin:8px 0 0;font-size:16px}
+.small img{border-radius:6px;margin-top:14px;background:var(--tint)}
+.contact{padding-block:clamp(56px,8vw,112px);border-top:1px solid var(--rule)}
+.contact .say{font-size:clamp(28px,4vw,44px);max-width:18em}
+footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding-block:22px 32px;border-top:1px solid var(--rule)}
+@media(max-width:760px){.hero,.proj{grid-template-columns:minmax(0,1fr)}.hero{align-items:start}.portrait{max-width:420px;aspect-ratio:4/5}.hero .intro{display:contents}h1{order:-1;margin-bottom:4px}.proj .shots{order:-1}}
 </style>
 </head>
 <body>
-
 <div class="wrap">
-  <header class="hero">
-    <div class="intro">
-      <h1 class="name">Tanisha<br>Srinivasan</h1>
-      <p>I build small wearables that help people, from the circuit board to the firmware.</p>
-      <p class="muted">I study physics and computer science at USC, with a minor in computational neuroscience. Outside of building, I'm learning Carnatic music and I've danced ballet for about ten years.</p>
+<header class="top">
+  <a href="#top" style="font-weight:500">Tanisha Srinivasan</a>
+  <nav aria-label="Main"><a href="#work">Work</a><a href="Srinivasan_Tanisha_Resume.pdf">Resume</a><a href="#contact">Contact</a></nav>
+</header>
+
+<section class="hero" id="top">
+  <figure class="portrait" id="pt"><img id="ptimg" src="img/me.webp" alt="Tanisha Srinivasan" width="480" height="632"><canvas id="dots" aria-hidden="true"></canvas><figcaption class="mono hint">Move over me to look through the dots</figcaption></figure>
+  <div class="intro">
+    <h1>Tanisha<br>Srinivasan</h1>
+    <div>
+      <p class="say">I build small wearables that help people, from the circuit board to the firmware.</p>
+      <p>I study physics and computer science at USC, with a minor in computational neuroscience. Right now I'm the hardware engineer on Saylo, a speech therapy necklace for kids. Outside of building, I'm learning Carnatic music and I've danced ballet for about ten years.</p>
+      <p class="mono">Los Angeles · from Singapore · USC 2029 · open to Summer 2027 hardware internships</p>
+      <div class="links"><a href="Srinivasan_Tanisha_Resume.pdf">Resume</a><a href="https://linkedin.com/in/tanishasrinivasan">LinkedIn</a><a href="mailto:tanishas@usc.edu">tanishas@usc.edu</a></div>
     </div>
-    <div class="badge-wrap" aria-hidden="true">
-      <div class="strap"></div>
-      <div class="badge" id="badge">
-        <div class="slot"></div>
-        <img src="img/me.webp" alt="">
-        <div class="txt">
-          <div class="nm">Tanisha<br>Srinivasan</div>
-          <div class="meta">Physics &amp; CS<br>USC · 2029</div>
-        </div>
-      </div>
+  </div>
+</section>
+
+<main id="work">
+  <h2>Work</h2>
+
+  <article class="proj">
+    <div>
+      <h3>Saylo</h3>
+      <p class="role">Hardware engineer · 2026 – now · <a href="https://heysaylo.com">heysaylo.com</a></p>
+      <p>Kids in speech therapy often get a sound right in sessions and lose it at school and at home. Saylo is a necklace they wear all day that tracks how they say their practice sounds and shows their speech therapist what's actually sticking. Everything runs offline on the necklace, so no audio leaves it.</p>
+      <p>I designed the 4-layer board in KiCad around an nRF54L15 Bluetooth chip and an nPM1300 power chip, had it fabricated and assembled, brought it up, and wrote the firmware.</p>
+      <div class="specs mono"><span>42 × 32 mm</span><span>56 parts</span><span>~8 h battery</span><span>&lt;150 ms haptic latency</span></div>
     </div>
-  </header>
-
-  <section id="work">
-    <h2>Experience</h2>
-    <div class="list">
-      <div class="item">
-        <button type="button" aria-expanded="false"><h3>Cue <span>Hardware Engineer</span></h3><span class="date">2026</span><span class="pm">+</span></button>
-        <div class="body"><div>
-          <p>An ear-worn wearable that gives a silent haptic tap when you use filler words or speak too fast. I designed the 4-layer board in KiCad around an nRF54L15 Bluetooth module, had it fabricated and assembled, and wrote the prototype firmware. Built through Sigma Eta Pi at USC.</p>
-          <div class="spec">42 × 32 mm · 56 parts · ~10 h battery · 90% accuracy · &lt;150 ms latency</div>
-          <div class="shots">
-            <img class="wide" src="img/cue-exploded.webp" alt="Exploded view of Cue: shell, circuit board, battery and haptic motor" loading="lazy">
-            <img class="tall" src="img/cue-device.webp" alt="Cue behind-the-ear device render" loading="lazy">
-            <img class="tall" src="img/cue-app.webp" alt="Cue companion app" loading="lazy">
-          </div>
-        </div></div>
-      </div>
-      <div class="item">
-        <button type="button" aria-expanded="false"><h3>Dexterra Grip <span>Hardware Engineer</span></h3><span class="date">2025</span><span class="pm">+</span></button>
-        <div class="body"><div>
-          <p>A $200 assistive glove for people with grip challenges, about a tenth the cost of commercial options. Force sensors read intent and servo-driven tendons add up to 30 N of grip. U.S. finalist at InventFuture.Global and winner of the Project Invent Moonshot Award.</p>
-          <div class="spec">5 actuation concepts · +40% grip consistency</div>
-          <div class="shots">
-            <img class="wide" src="img/dexterra-final.webp" alt="Final Dexterra Grip glove with servo and tendons" loading="lazy">
-            <img class="wide" src="img/dexterra-process.webp" alt="Three earlier glove designs" loading="lazy">
-          </div>
-        </div></div>
-      </div>
-      <div class="item">
-        <button type="button" aria-expanded="false"><h3>Tremor-Dampening Wearable <span>Embedded Developer</span></h3><span class="date">2025</span><span class="pm">+</span></button>
-        <div class="body"><div>
-          <p>An IMU-driven wearable that detects tremor and actuates damping to steady the hand. Four prototype iterations, demoed at Pie-Fi Demo Day at UC Santa Cruz.</p>
-          <div class="spec">−35% tremor amplitude</div>
-        </div></div>
-      </div>
-      <div class="item">
-        <button type="button" aria-expanded="false"><h3>Moko <span>Hackathon</span></h3><span class="date">2026</span><span class="pm">+</span></button>
-        <div class="body"><div>
-          <p>A platform that connects creators' product designs with suppliers and manufacturing guidance. Built over a weekend hackathon.</p>
-          <div class="shots" style="padding-top:14px">
-            <img class="wide" src="img/moko-home.webp" alt="Moko home page" loading="lazy">
-            <img class="wide" src="img/moko-steps.webp" alt="Moko's three-step flow" loading="lazy">
-          </div>
-        </div></div>
-      </div>
-      <div class="item">
-        <button type="button" aria-expanded="false"><h3>Exoplanet Detection <span>ML Researcher</span></h3><span class="date">2024</span><span class="pm">+</span></button>
-        <div class="body"><div>
-          <p>Convolutional neural networks that classify NASA Kepler light curves to find transiting planets. Inspirit AI Scholars.</p>
-          <div class="spec">100,000+ observations · 87% validation accuracy</div>
-        </div></div>
-      </div>
-      <div class="item">
-        <button type="button" aria-expanded="false"><h3>API Security System <span>Developer</span></h3><span class="date">2025</span><span class="pm">+</span></button>
-        <div class="body"><div>
-          <p>A Python proxy that authenticates API requests and blocks replay attacks. Google Developer Group at UCSC.</p>
-        </div></div>
-      </div>
+    <div class="shots">
+      <figure><img src="img/cue-exploded.webp" alt="Exploded view of the first ear-worn version: shell, circuit board, battery and haptic motor" width="1100" height="956" loading="lazy"><figcaption>Our first version was ear-worn. Same board inside: shell, PCB, battery and haptic motor.</figcaption></figure>
     </div>
-  </section>
+  </article>
 
+  <article class="proj">
+    <div>
+      <h3>Dexterra Grip</h3>
+      <p class="role">Hardware lead, team of three · Project Invent · 2025 – 2026</p>
+      <p>A $200 assistive glove for a man with weak grip after paralysis, about a tenth the cost of commercial options. Force sensors read what he's trying to do and servo-driven tendons add up to 30 N of grip, tuned finger by finger.</p>
+      <p>We tested with him every week for six months and went through five designs. He can now hold a cup, open a jar and play his guitar.</p>
+      <div class="specs mono"><span>5 designs</span><span>+40% grip consistency</span><span>U.S. finalist, InventFuture.Global</span><span>Moonshot Award</span></div>
+    </div>
+    <div class="shots">
+      <figure><img src="img/dexterra-final.webp" alt="Final Dexterra Grip glove with servo and tendons" width="1100" height="786" loading="lazy"><figcaption>The final glove: servo on the wrist, tendons along each finger.</figcaption></figure>
+      <figure><img src="img/dexterra-process.webp" alt="Three earlier glove designs" width="1400" height="313" loading="lazy"><figcaption>Three of the earlier designs.</figcaption></figure>
+    </div>
+  </article>
 
-  <section class="contact">
-    <h2>Contact</h2>
-    <p class="say">I'm looking for hardware and embedded roles. I'd love to connect on <a href="https://linkedin.com/in/tanishasrinivasan" target="_blank" rel="noopener">LinkedIn</a> or <a href="https://x.com/tanishasrini" target="_blank" rel="noopener">X (Twitter)</a>, and you can read my <a href="Srinivasan_Tanisha_Resume.pdf" target="_blank" rel="noopener">resume</a>. To reach out directly, email me at <button id="copy" type="button" title="Copy email">tanishas@usc.edu</button>.</p>
-  </section>
+  <article class="proj">
+    <div>
+      <h3>Tremor&#8209;Dampening Wearable</h3>
+      <p class="role">Hardware lead, team of two · Pie-Fi @ UC Santa Cruz · 2025</p>
+      <p>A wrist wearable that reads hand motion from an MPU6050 IMU, filters for the 4–12 Hz tremor band on a Raspberry Pi Pico, and counters it with a vibration motor. I wrote the C firmware and took it through four prototypes, from an Arduino to the Pico, with 3D-printed housings I designed in SolidWorks.</p>
+    </div>
+    <div class="big">
+      <div><b>−35%</b><span>measured tremor amplitude</span></div>
+      <div><b>4–12 Hz</b><span>tremor band filtered</span></div>
+      <div><b>4</b><span>prototypes, demoed to 100+ people</span></div>
+    </div>
+  </article>
 
-  <footer>© 2026 Tanisha Srinivasan</footer>
+  <div class="small">
+    <article>
+      <h3>FieldLog</h3>
+      <p class="role" style="margin:0">Personal project · 2026</p>
+      <p>A rugged voice recorder for offshore technicians, scoped from a call with SubseaFPS. I designed the enclosure in CAD around gloved hands: a 38 mm concave record button, a clip-on mount and a nonmetallic NFC window.</p>
+    </article>
+    <article>
+      <h3>Moko</h3>
+      <p class="role" style="margin:0">Hackathon · 2026</p>
+      <p>A platform that connects creators' product designs with suppliers and manufacturing guidance. Built over a weekend.</p>
+      <figure style="margin-top:14px"><img src="img/moko-home.webp" alt="Moko home page" width="1400" height="646" loading="lazy" style="margin:0"></figure>
+    </article>
+    <article>
+      <h3>Exoplanet Detection</h3>
+      <p class="role" style="margin:0">ML researcher · Inspirit AI · 2024</p>
+      <p>Convolutional neural networks that classify NASA Kepler light curves to find transiting planets. 100,000+ observations, 87% validation accuracy.</p>
+    </article>
+  </div>
+</main>
+
+<section class="contact" id="contact">
+  <p class="say">I'm looking for hardware and embedded roles for Summer 2027.</p>
+  <p>The best way to reach me is email: <a href="mailto:tanishas@usc.edu">tanishas@usc.edu</a>. I'm also on <a href="https://linkedin.com/in/tanishasrinivasan">LinkedIn</a> and <a href="https://x.com/tanishasrini">X</a>, and you can read my <a href="Srinivasan_Tanisha_Resume.pdf">resume</a>.</p>
+</section>
+
+<footer class="mono"><span>© 2026 Tanisha Srinivasan</span><a href="#top">Back to top ↑</a></footer>
 </div>
-
-
 <script>
-document.querySelectorAll('.item button').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const it=btn.parentElement, open=it.hasAttribute('data-open');
-    it.toggleAttribute('data-open',!open);
-    btn.setAttribute('aria-expanded',String(!open));
-  });
-});
-const badge=document.getElementById('badge'), wrap=document.querySelector('.badge-wrap');
-if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
-  badge.addEventListener('animationend',()=>{
-    badge.style.animation='none';
-    wrap.addEventListener('pointermove',e=>{
-      const r=badge.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
-      badge.style.transform=`rotateY(${x*20}deg) rotateX(${-y*14}deg)`;
-    });
-    wrap.addEventListener('pointerleave',()=>badge.style.transform='');
-  });
+{
+const fig=document.getElementById('pt'),cv=document.getElementById('dots'),img=document.getElementById('ptimg');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let lum=[],cols=0,rows=0,cell=7,W=0,H=0,px=-999,py=-999,lens=0,t0=0;
+const ctx=cv.getContext('2d');
+const build=()=>{
+  const r=fig.getBoundingClientRect();W=r.width;H=r.height;if(!W||!H||!img.naturalWidth)return;
+  const dpr=Math.min(2,devicePixelRatio||1);cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+  cell=W<380?6:7;cols=Math.ceil(W/cell);rows=Math.ceil(H/cell);
+  const o=document.createElement('canvas');o.width=cols;o.height=rows;const c=o.getContext('2d');
+  const s=Math.max(cols/img.naturalWidth,rows/img.naturalHeight),dw=img.naturalWidth*s,dh=img.naturalHeight*s;
+  c.drawImage(img,(cols-dw)/2,(rows-dh)*.3,dw,dh);
+  let d;try{d=c.getImageData(0,0,cols,rows).data}catch(e){return}
+  lum=new Float32Array(cols*rows);
+  for(let i=0;i<cols*rows;i++){lum[i]=(.3*d[i*4]+.59*d[i*4+1]+.11*d[i*4+2])/255}
+  fig.classList.add('on');t0=performance.now();loop();
+};
+const probe=document.createElement('span');probe.style.color='var(--acc)';probe.hidden=true;fig.appendChild(probe);
+const draw=now=>{
+  const ink=getComputedStyle(fig).color,acc=getComputedStyle(probe).color;
+  const grow=reduce?1:Math.min(1,(now-t0)/900);
+  ctx.clearRect(0,0,W,H);
+  const R=Math.min(W,H)*.2*lens;
+  if(R>2){ctx.save();ctx.beginPath();ctx.arc(px,py,R,0,7);ctx.clip();
+    const s=Math.max(W/img.naturalWidth,H/img.naturalHeight),dw=img.naturalWidth*s,dh=img.naturalHeight*s;
+    ctx.drawImage(img,(W-dw)/2,(H-dh)*.3,dw,dh);ctx.restore()}
+  ctx.fillStyle=ink;ctx.beginPath();
+  for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){
+    const cx=x*cell+cell/2,cy=y*cell+cell/2;
+    if(R>2&&(cx-px)**2+(cy-py)**2<R*R)continue;
+    const v=1-Math.pow(lum[y*cols+x],.55);const rad=Math.max(0,v*cell*.62*grow-.25);
+    if(rad>.3){ctx.moveTo(cx+rad,cy);ctx.arc(cx,cy,rad,0,7)}
+  }
+  ctx.fill();
+  if(R>2){ctx.strokeStyle=acc;ctx.lineWidth=3;ctx.beginPath();ctx.arc(px,py,R,0,7);ctx.stroke()}
+};
+let raf=0,target=0;
+const loop=()=>{cancelAnimationFrame(raf);const f=now=>{lens+=(target-lens)*(reduce?1:.18);draw(now);
+  if(Math.abs(target-lens)>.01||(!reduce&&now-t0<950))raf=requestAnimationFrame(f)};raf=requestAnimationFrame(f)};
+const move=e=>{const r=cv.getBoundingClientRect();px=e.clientX-r.left;py=e.clientY-r.top;target=1;loop()};
+cv.addEventListener('pointermove',move);cv.addEventListener('pointerdown',move);
+cv.addEventListener('pointerleave',()=>{target=0;loop()});
+const ro=new ResizeObserver(()=>build());ro.observe(fig);
+if(img.complete)build();else img.addEventListener('load',build);
 }
-const c=document.getElementById('copy'), email='tanishas@usc.edu';
-c.addEventListener('click',()=>{
-  try{navigator.clipboard.writeText(email).then(()=>{c.textContent='Copied';setTimeout(()=>c.textContent=email,1500)}).catch(()=>{})}catch(e){}
-});
 </script>
-
 </body>
 </html>
