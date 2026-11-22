@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saylo · Tanisha Srinivasan</title>
+<meta name="description" content="A necklace that helps kids keep the progress they make in speech therapy.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Crect width='36' height='36' rx='6' fill='%23c8382d'/%3E%3Ctext x='18' y='25' text-anchor='middle' font-size='19' font-weight='700' fill='white'%3E%E0%AE%A4%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Noto+Sans+Tamil:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="glow" aria-hidden="true"><span class="a"></span><span class="b"></span><span class="c"></span></div>
+<div class="col">
+<header><a class="seal" href="index.html" aria-label="Home" title="த, the first letter of my name in Tamil">த</a><a class="back" href="index.html">← Work</a></header>
+<main class="case">
+<h1>Saylo</h1>
+<p class="sum">A necklace that helps kids keep the progress they make in speech therapy.</p>
+<dl class="facts"><div><dt>Role</dt><dd>Hardware engineer</dd></div><div><dt>Team</dt><dd>3 people, Sigma Eta Pi @ USC</dd></div><div><dt>Timeline</dt><dd>Aug 2026 – now</dd></div><div><dt>Tools</dt><dd>KiCad, C, logic analyzer</dd></div></dl>
+<div class="car g-saylo"><div class="track"><div class="slide"><img src="img/saylo-board.webp" alt="3D render of the Saylo circuit board" width="1141" height="790" loading="lazy"></div><div class="slide"><img src="img/saylo-schematic.webp" alt="Saylo schematic" width="2731" height="1692" loading="lazy"></div></div></div>
+<h2>The problem</h2>
+<p>Kids in speech therapy often get a sound right in the session and then lose it at school and at home. Most of them end up working on a sound they've already been treated for, because nobody hears how they talk outside the therapy room.</p>
+<h2>What Saylo does</h2>
+<p>Saylo is a small pill-shaped necklace a kid wears all day. It listens for the sounds they're practicing, scores how accurately they say them, and sends that progress to their speech therapist's dashboard. Parents get practice games in an app. All the speech processing runs on the necklace itself, so no audio ever leaves it.</p>
+<h2>The board</h2>
+<p>I designed the main board in KiCad: a 42 × 32 mm, 4-layer PCB with 56 parts, fabricated and assembled at JLCPCB.</p>
+<ul>
+<li>An nRF54L15 Bluetooth module with an external antenna</li>
+<li>An nPM1300 power management chip for USB-C charging and a 1.8 V rail</li>
+<li>A digital mic, a bone-conduction IMU and a DRV2605L haptic driver, talking over I2C, PDM and I2S</li>
+</ul>
+<div class="big"><div><b>~8 h</b><span>on a 100 mAh battery</span></div><div><b>&lt;150 ms</b><span>from command to haptic tap</span></div><div><b>56</b><span>parts on a 42 × 32 mm board</span></div></div>
+<h2>Bring-up</h2>
+<p>When the boards came back, I brought them up one part at a time with a logic analyzer, a multimeter and a bench supply, checking power first and then each chip on its bus. I wrote C firmware for the haptic taps and timed it under 150 ms, then ran the battery down to measure about 8 hours of use.</p>
+<h2>The speech model</h2>
+<p>Most speech AI is trained on adults and struggles with kids. We started from pasketti-phonetic, an open model trained on recordings of about 1,700 children, trained it further on clips speech therapists marked right or wrong, and shrank it to run on the necklace.</p>
+<h2>Testing</h2>
+<p>About 15 people around LA tried the breadboard prototype, many of them kids. The custom board arrived in November and works, and next we're taking it to speech therapists in LA. Saylo started as Cue, an ear-worn speech coach, and uses the same board.</p>
+<a class="next" href="dexterra.html"><span>Next project</span><b>Dexterra Grip →</b></a>
+</main>
+<footer>
+ <p class="who">tanisha srinivasan</p>
+ <p class="clock"><time id="clock">6:42 PM</time><span>Los Angeles, CA</span></p>
+ <h2>Let's chat!</h2>
+ <a class="mail" href="mailto:tanishas@usc.edu">tanishas@usc.edu</a>
+ <nav aria-label="Footer"><a href="index.html">WORK</a><a href="sketchbook.html">SKETCHBOOK</a><a href="about.html">ABOUT</a><a href="https://linkedin.com/in/tanishasrinivasan">LINKEDIN</a><a href="https://github.com/tanishasrinivasan">GITHUB</a><a href="Srinivasan_Tanisha_Resume.pdf">RESUME</a></nav>
+</footer>
+</div>
+<script src="site.js"></script>
+</body>
+</html>

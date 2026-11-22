@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tremor Wearable · Tanisha Srinivasan</title>
+<meta name="description" content="A wrist wearable that picks up hand tremor and pushes back against it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Crect width='36' height='36' rx='6' fill='%23c8382d'/%3E%3Ctext x='18' y='25' text-anchor='middle' font-size='19' font-weight='700' fill='white'%3E%E0%AE%A4%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Noto+Sans+Tamil:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="glow" aria-hidden="true"><span class="a"></span><span class="b"></span><span class="c"></span></div>
+<div class="col">
+<header><a class="seal" href="index.html" aria-label="Home" title="த, the first letter of my name in Tamil">த</a><a class="back" href="index.html">← Work</a></header>
+<main class="case">
+<h1>Tremor Wearable</h1>
+<p class="sum">A wrist wearable that picks up hand tremor and pushes back against it.</p>
+<dl class="facts"><div><dt>Role</dt><dd>Hardware lead</dd></div><div><dt>Team</dt><dd>2 people, Pie-Fi @ UCSC</dd></div><div><dt>Timeline</dt><dd>July – Dec 2025</dd></div><div><dt>Tools</dt><dd>Raspberry Pi Pico, C, SolidWorks</dd></div></dl>
+<div class="car g-tremor dark"><div class="track"><div class="slide"><svg class="wave" viewBox="0 0 420 262" aria-hidden="true"><rect x="140" y="30" width="140" height="200" rx="3"/><text x="210" y="20" text-anchor="middle">4–12 Hz</text><path d=""/></svg></div></div></div>
+<h2>The idea</h2>
+<p>Hand tremor makes everyday things like eating or writing hard. We wanted a small device on the wrist that could sense tremor and work against it.</p>
+<h2>How it works</h2>
+<p>An MPU6050 IMU reads hand motion, and a Raspberry Pi Pico filters it for the 4–12 Hz band where tremor lives, so normal movement passes through. When it detects tremor, it drives a vibration motor with a spinning off-center weight to counter it. I wrote and debugged the C firmware.</p>
+<div class="big"><div><b>−35%</b><span>measured tremor amplitude</span></div><div><b>4–12 Hz</b><span>tremor band filtered</span></div><div><b>4</b><span>prototypes</span></div></div>
+<h2>Measuring it</h2>
+<p>We compared IMU readings with the device on and off, then confirmed it with on-person testing.</p>
+<h2>Four prototypes</h2>
+<p>Across four versions we changed the actuator, improved the fit, and moved from an Arduino to the Raspberry Pi Pico, with 3D-printed housings I designed in SolidWorks. We demoed the final version to more than 100 people at Pie-Fi Demo Day.</p>
+<a class="next" href="fieldlog.html"><span>Next project</span><b>FieldLog →</b></a>
+</main>
+<footer>
+ <p class="who">tanisha srinivasan</p>
+ <p class="clock"><time id="clock">6:42 PM</time><span>Los Angeles, CA</span></p>
+ <h2>Let's chat!</h2>
+ <a class="mail" href="mailto:tanishas@usc.edu">tanishas@usc.edu</a>
+ <nav aria-label="Footer"><a href="index.html">WORK</a><a href="sketchbook.html">SKETCHBOOK</a><a href="about.html">ABOUT</a><a href="https://linkedin.com/in/tanishasrinivasan">LINKEDIN</a><a href="https://github.com/tanishasrinivasan">GITHUB</a><a href="Srinivasan_Tanisha_Resume.pdf">RESUME</a></nav>
+</footer>
+</div>
+<script src="site.js"></script>
+</body>
+</html>

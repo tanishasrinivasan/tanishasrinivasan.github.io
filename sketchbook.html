@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sketchbook · Tanisha Srinivasan</title>
+<meta name="description" content="Renders, CAD, schematics, and a place to leave a doodle.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Crect width='36' height='36' rx='6' fill='%23c8382d'/%3E%3Ctext x='18' y='25' text-anchor='middle' font-size='19' font-weight='700' fill='white'%3E%E0%AE%A4%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Noto+Sans+Tamil:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="glow" aria-hidden="true"><span class="a"></span><span class="b"></span><span class="c"></span></div>
+<div class="col"><header>
+ <a class="seal" href="index.html" aria-label="Home" title="த, the first letter of my name in Tamil">த</a>
+ <h1 class="name">tanisha srinivasan</h1>
+ <div class="intro">
+  <p>Building small wearables that help people, from the circuit board to the firmware.</p>
+  <p>Currently designing hardware at <a class="pill" href="saylo.html">Saylo</a>.</p>
+ </div>
+ <nav class="tabs" aria-label="Sections"><a href="index.html">Work</a><a href="sketchbook.html" class="on" aria-current="page">Sketchbook</a><a href="about.html">About</a></nav>
+</header>
+<main>
+<p class="sk-intro">Renders, CAD and schematics from my projects. Leave me a doodle while you're here.</p>
+<div class="pad">
+ <canvas id="pad" aria-label="Drawing pad"></canvas>
+ <div class="tools">
+  <button class="sw on" data-c="#1c1b1a" style="background:#1c1b1a" aria-label="Black"></button>
+  <button class="sw" data-c="#c8382d" style="background:#c8382d" aria-label="Red"></button>
+  <button class="sw" data-c="#ffa18e" style="background:#ffa18e" aria-label="Coral"></button>
+  <button class="sw" data-c="#5a6fd6" style="background:#5a6fd6" aria-label="Blue"></button>
+  <span style="flex:1"></span>
+  <button class="btn" id="undo">Undo</button><button class="btn" id="clear">Clear</button><button class="btn" id="save">Save</button>
+ </div>
+</div>
+<div class="gallery">
+ <figure><img src="img/saylo-board.webp" alt="3D render of the Saylo circuit board" width="1141" height="790" loading="lazy"><figcaption>Saylo board, KiCad 3D render</figcaption></figure>
+ <figure><img src="img/fieldlog-cad.webp" alt="CAD render of the FieldLog enclosure" width="1101" height="866" loading="lazy"><figcaption>FieldLog enclosure, code-based CAD</figcaption></figure>
+ <figure><img src="img/saylo-schematic.webp" alt="Saylo schematic" width="2731" height="1692" loading="lazy"><figcaption>Saylo schematic</figcaption></figure>
+ <figure><img src="img/cue-exploded.webp" alt="Exploded view of Cue" width="1100" height="956" loading="lazy"><figcaption>Cue, exploded view</figcaption></figure>
+ <figure><img src="img/dexterra-process.webp" alt="Three earlier glove designs" width="1400" height="313" loading="lazy"><figcaption>Dexterra Grip, designs 1–3</figcaption></figure>
+ <figure><img src="img/cue-device.webp" alt="Cue worn behind the ear" width="900" height="1323" loading="lazy"><figcaption>Cue, behind the ear</figcaption></figure>
+</div>
+</main>
+<footer>
+ <p class="who">tanisha srinivasan</p>
+ <p class="clock"><time id="clock">6:42 PM</time><span>Los Angeles, CA</span></p>
+ <h2>Let's chat!</h2>
+ <a class="mail" href="mailto:tanishas@usc.edu">tanishas@usc.edu</a>
+ <nav aria-label="Footer"><a href="index.html">WORK</a><a href="sketchbook.html">SKETCHBOOK</a><a href="about.html">ABOUT</a><a href="https://linkedin.com/in/tanishasrinivasan">LINKEDIN</a><a href="https://github.com/tanishasrinivasan">GITHUB</a><a href="Srinivasan_Tanisha_Resume.pdf">RESUME</a></nav>
+</footer>
+</div>
+<script src="site.js"></script>
+</body>
+</html>
